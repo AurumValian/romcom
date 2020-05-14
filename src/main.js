@@ -26,9 +26,23 @@ var currentCover;
 
 
 // We've provided one function to get you started
+
+// var array = [1,3,4];
+// this test passed
+// console.log(getRandomIndex(array))
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
+
+function newRandomCover() {
+  return new Cover (covers[getRandomIndex(covers)], titles[getRandomIndex(titles)],
+  descriptors[getRandomIndex(descriptors)], descriptors[getRandomIndex(descriptors)]);
+}
+
+console.log(newRandomCover()); // returns index numbers
+
+
 
 // psuedo code create a function called newRandomCover()
 // create an event listener 'load'
