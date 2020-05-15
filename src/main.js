@@ -22,7 +22,7 @@ var currentCover;
 // Add your event listeners here 👇
 
 
-// Create your eent handlers and other functions here 👇
+// Create your event handlers and other functions here 👇
 
 
 // We've provided one function to get you started
@@ -40,7 +40,13 @@ function newRandomCover() {
   descriptors[getRandomIndex(descriptors)], descriptors[getRandomIndex(descriptors)]);
 }
 
-console.log(newRandomCover()); // returns index numbers
+function loadRandomCover() {
+  currentCover = newRandomCover();
+  bookCover.innerText = currentCover.cover;
+  bookTitle.innerText = currentCover.title;
+  tagline1.innerText = currentCover.tagline1;
+  tagline2.innerText = currentCover.tagline2;
+} // returns index numbers
 
 
 
