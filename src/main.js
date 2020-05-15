@@ -6,7 +6,6 @@ var bookTitle = document.querySelector('.cover-title');
 var tagline1 = document.querySelector('.tagline-1');
 var tagline2 = document.querySelector('.tagline-2');
 
-console.log('This should point to covers and HTML code: ', bookCover);
 
 
 // Make DOM commands
@@ -20,10 +19,10 @@ var savedCovers = [
 var currentCover;
 
 // Add your event listeners here 👇
+window.addEventListener('DOMContentLoaded', loadRandomCover());
 
-
-// Create your eent handlers and other functions here 👇
-
+// Create your event handlers and other functions here 👇
+//window.onload = (loadRandomCover());
 
 // We've provided one function to get you started
 
@@ -40,7 +39,13 @@ function newRandomCover() {
   descriptors[getRandomIndex(descriptors)], descriptors[getRandomIndex(descriptors)]);
 }
 
-console.log(newRandomCover()); // returns index numbers
+function loadRandomCover() {
+  currentCover = newRandomCover();
+  bookCover.setAttribute("src", currentCover.cover);
+  bookTitle.innerText = currentCover.title;
+  tagline1.innerText = currentCover.tagline1;
+  tagline2.innerText = currentCover.tagline2;
+} // returns index numbers
 
 
 
