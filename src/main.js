@@ -4,6 +4,10 @@ var bookTitle = document.querySelector('.cover-title');
 var tagline1 = document.querySelector('.tagline-1');
 var tagline2 = document.querySelector('.tagline-2');
 var randomCoverButton = document.querySelector('.random-cover-button');
+var homeButton = document.querySelector('.home-button');
+var saveCoverButton = document.querySelector('.save-cover-button');
+var viewSavedButton = document.querySelector('.view-saved-button');
+var makeYourOwnButton = document.querySelector('.make-new-button');
 
 
 var savedCovers = [
