@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', loadRandomCover);
 randomCoverButton.addEventListener('click', loadRandomCover);
 homeButton.addEventListener('click', clickOnHome);
 makeYourOwnButton.addEventListener('click', clickOnMake);
+viewSavedButton.addEventListener('click', clickOnSavedCovers);
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -55,6 +56,17 @@ function clickOnHome() {
   homeView.classList.remove('hidden');
   randomCoverButton.classList.remove('hidden');
   saveCoverButton.classList.remove('hidden');
+}
+
+function clickOnSavedCovers() {
+  homeView.classList.add('hidden');
+  randomCoverButton.classList.add('hidden');
+  saveCoverButton.classList.add('hidden');
+  formView.classList.add('hidden');
+  homeButton.classList.remove('hidden');
+  makeYourOwnButton.classList.remove('hidden');
+  savedView.classList.remove('hidden');
+  viewSavedButton.classList.remove('hidden');
 }
 
 function makeVisible() {
