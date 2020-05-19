@@ -11,10 +11,7 @@ var makeYourOwnButton = document.querySelector('.make-new-button');
 var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
 var savedView = document.querySelector('.saved-view');
-var coverInput = document.querySelector('#cover').value;
-var titleInput = document.querySelector('#title').value;
-var tagline1Input = document.querySelector('#descriptor1').value;
-var tagline2Input = document.querySelector('#descriptor2').value;
+var createCoverButton = document.querySelector('.create-new-book-button');
 
 
 var savedCovers = [
@@ -22,11 +19,12 @@ var savedCovers = [
 ];
 var currentCover;
 
-window.addEventListener('DOMContentLoaded', loadRandomCover);
+window.addEventListener('DOMContentLoaded', loadRandomCover); 
 randomCoverButton.addEventListener('click', loadRandomCover);
 homeButton.addEventListener('click', clickOnHome);
 makeYourOwnButton.addEventListener('click', clickOnMake);
 viewSavedButton.addEventListener('click', clickOnSavedCovers);
+createCoverButton.addEventListener('click', createNewCover);
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -37,7 +35,7 @@ function newRandomCover() {
   descriptors[getRandomIndex(descriptors)], descriptors[getRandomIndex(descriptors)]);
 }
 
-function loadRandomCover() { // works on initial view
+function loadRandomCover() {
   currentCover = newRandomCover();
   bookCover.setAttribute("src", currentCover.cover);
   tagline1.innerText = currentCover.tagline1;
@@ -45,7 +43,7 @@ function loadRandomCover() { // works on initial view
   bookTitle.innerText = currentCover.title;
 }
 
-function clickOnMake() { // Takes you to create your own cover page
+function clickOnMake() {
   homeView.classList.add('hidden');
   savedView.classList.add('hidden');
   formView.classList.remove('hidden');
@@ -54,7 +52,7 @@ function clickOnMake() { // Takes you to create your own cover page
   saveCoverButton.classList.add('hidden');
 }
 
-function clickOnHome() { // back to home (initial view)
+function clickOnHome() {
   formView.classList.add('hidden');
   savedView.classList.add('hidden');
   homeView.classList.remove('hidden');
@@ -63,7 +61,7 @@ function clickOnHome() { // back to home (initial view)
   saveCoverButton.classList.remove('hidden');
 }
 
-function clickOnSavedCovers() { // iteration 4 where we add new titles
+function clickOnSavedCovers() {
   formView.classList.add('hidden');
   homeView.classList.add('hidden');
   savedView.classList.remove('hidden');
@@ -74,26 +72,23 @@ function clickOnSavedCovers() { // iteration 4 where we add new titles
   viewSavedButton.classList.remove('hidden');
 }
 
-function createNewCover()
-
-function makeVisible() {
-  homeView.classList.remove('hidden');
-  randomCoverButton.classList.remove('hidden');
-  saveCoverButton.classList.remove('hidden');
-  formView.classList.remove('hidden');
-  homeButton.classList.remove('hidden');
-  makeYourOwnButton.classList.remove('hidden');
-  savedView.classList.remove('hidden');
-  viewSavedButton.classList.remove('hidden');
+function createNewCover(event) {
+  event.preventDefault();
+  var coverInput = document.querySelector('#cover');
+  var titleInput = document.querySelector('#title');
+  var tagline1Input = document.querySelector('#descriptor1');
+  var tagline2Input = document.querySelector('#descriptor2');
+  bookCover.setAttribute("src", coverInput.value);
+  tagline1.innerText = tagline1Input.value;
+  tagline2.innerText = tagline2Input.value;
+  bookTitle.innerText = titleInput.value;
+  currentCover = new Cover(coverInput.value, titleInput.value, tagline1Input.value, tagline2Input.value);
+  clickOnHome();
+  saveUserData(coverInput, titleInput, tagline1Input, tagline2Input);
 }
 
-function makeInvisible() {
-  homeView.classList.add('hidden');
-  randomCoverButton.classList.add('hidden');
-  saveCoverButton.classList.add('hidden');
-  formView.classList.add('hidden');
-  homeButton.classList.add('hidden');
-  makeYourOwnButton.classList.add('hidden');
-  savedView.classList.add('hidden');
-  viewSavedButton.classList.add('hidden');
+function saveUserData(coverInput, titleInput, tagline1Input, tagline2Input) {
+  covers.push(coverInput.value);
+  titles.push(titleInput.value);
+  descriptors.push(tagline1Input.value, tagline2Input.value);
 }
